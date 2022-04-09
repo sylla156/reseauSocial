@@ -1,0 +1,8 @@
+post http://localhost:5000/api/user/register
+Content-Type: application/json
+
+{
+    "pseudo" : "brahimCode",
+    "email" : "sylla@gmail.com",
+    "password" : 333333
+}

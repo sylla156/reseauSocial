@@ -1,0 +1,26 @@
+{
+  "name": "reseausocial",
+  "version": "1.0.0",
+  "description": "creation d'un reseau social",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylla156/reseauSocial.git"
+  },
+  "author": "sylla ibrahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sylla156/reseauSocial/issues"
+  },
+  "homepage": "https://github.com/sylla156/reseauSocial#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
+}
