@@ -65,7 +65,6 @@ const follow = async (request, response) => {
   if (!ObjectID.isValid(id)) return response.status(400).send("ID unknow");
 
   try {
-
     let newData = await UserModel.findByIdAndUpdate(id, {
       $push: {
         following: data.idToFollow,
@@ -74,21 +73,15 @@ const follow = async (request, response) => {
 
     // inverse up is for following down in for followers
 
-
-    let otherNewData = await UserModel.findByIdAndUpdate(
-      data.idToFollow, {
+    let otherNewData = await UserModel.findByIdAndUpdate(data.idToFollow, {
       $push: { followers: id },
     });
 
-    const ALLDATA = {...newData,...otherNewData};
+    const ALLDATA = { ...newData, ...otherNewData };
     response.status(200).send(ALLDATA);
-
   } catch (error) {
     return response.status(500).json({ message: error });
   }
-
-
- 
 };
 
 const unfollow = async (request, response) => {

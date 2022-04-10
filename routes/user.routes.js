@@ -8,6 +8,10 @@ router
   .get(userController.getAllUsers)
   .post(authController.signUp);
 
+router.route("/login/").post(authController.signIn);
+
+router.route("/logout").post(authController.logout);
+
 router
   .route("/:id")
   .get(userController.userInfo)
