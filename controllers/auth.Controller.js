@@ -1,18 +1,14 @@
-const UserModel = require('../models/user.model.js');
-
+const UserModel = require("../models/user.model.js");
 
 const signUp = async (request, response) => {
+  const data = request.body;
 
-    const  data =  request.body;
+  try {
+    const user = UserModel.create(data);
+    response.send(data)
+  } catch (err) {
+    response.status(400);
+  }
+};
 
-
-    try {
-        const user = await UserModel.create(data);
-        response.send(data)
-    }catch(err) {
-        response.status(200)
-    }
-}
-
-
-module.exports = {signUp};
+module.exports = { signUp };
