@@ -1,4 +1,3 @@
-const { response } = require("express");
 const PostModel = require("../models/post.models.js");
 const UserModel = require("../models/user.model.js");
 const ObjectID = require("mongoose").Types.ObjectId;
@@ -10,13 +9,19 @@ const readPost = async (request, response) => {
   });
 };
 
-const createPost = (request, response) => {
+const createPost = async (request, response) => {
   try {
     const data = request.body;
-    const newPost = PostModel.create(data);
-    response.send(data);
+    const docs = PostModel.create({
+      posterId: data.posterId,
+
+      message: data.message,
+
+      picture: request.file.filename,
+    });
+    response.send(docs);
   } catch (error) {
-    return response.status(500).send(error);
+    response.status(500).send(error);
   }
 };
 
@@ -134,7 +139,6 @@ const editCommentPost = (req, res) => {
 
   try {
     return PostModel.findById(req.params.id, (err, docs) => {
-        
       const theComment = docs.comments.find((comment) =>
         comment._id.equals(req.body.commenterId)
       );
