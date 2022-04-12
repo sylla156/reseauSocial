@@ -46,4 +46,5 @@ const logout = async (request, response) => {
   response.cookie("jwt", "", { maxAge: 1 });
   response.send("suprimer avec success");
 };
+
 module.exports = { signUp, signIn, logout };
