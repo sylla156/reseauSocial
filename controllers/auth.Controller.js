@@ -38,7 +38,7 @@ const signIn = async (request, response) => {
     response.send(datas);
   } catch (error) {
     const errors = utilsSign.signInErrors(error);
-    if (error) response.status(400).send(error + "hello world");
+    if (error) response.status(400).send(errors);
   }
 };
 

@@ -44,7 +44,7 @@ router
 router.get('/', userController.getAllUsers);
 
 
-router.route("/login/").post(authController.signIn);
+router.route("/login").post(authController.signIn);
 
 router.route("/logout").post(authController.logout);
 

@@ -57,6 +57,7 @@ userSchema.statics.login = async function (email, password) {
 
     if (auth) return user;
     else return (errors.errors.password = " password not found");
+    console.log(auth)
   } catch (error) {
     console.log(error);
   }
