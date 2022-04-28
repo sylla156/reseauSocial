@@ -7,5 +7,5 @@ export  async function addNewUser(email, password) {
     email: email,
     password: password,
   });
-  return res.data;
+  return res;
 }

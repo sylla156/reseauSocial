@@ -12,7 +12,12 @@ const SigbIn = () => {
     (e) => {
       e.preventDefault();
       const response = addNewUser(email, password);
-      response.then((res) => dispatch({ type: ADD_NEW_USER, payload: res }));
+      response.then((res) => {
+
+        //for controls the message errors 
+          if (typeof res.data == 'string') console.log(res.data);
+          if (typeof res.data == 'object') dispatch({ type: ADD_NEW_USER, payload: res.data })
+      });
     },
     [email, password]
   );

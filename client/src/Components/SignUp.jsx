@@ -15,7 +15,13 @@ const SignUp = () => {
           email,
           password,
         })
-        .then((response) => console.log(response));
+        .then((response) => {
+           if (response.data.errors) {
+               console.log(response.data.errors);
+           }else {
+               console.log('creation de compte')
+           }
+        });
     },
     [pseudo, email, password]
   );
