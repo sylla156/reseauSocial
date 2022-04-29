@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import {Provider} from 'react-redux';
-import store from './store.js'
+import { Provider } from "react-redux";
+import store from "./store.js";
 function App() {
   return (
     <BrowserRouter>

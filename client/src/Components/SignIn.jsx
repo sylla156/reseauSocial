@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addNewUser, ADD_NEW_USER } from "../Actions/userAction";
 import Alert from "./utils/Alert";
@@ -8,6 +7,7 @@ const SigbIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
 
   const hanbleSubmit = useCallback(
@@ -17,8 +17,10 @@ const SigbIn = () => {
       addNewUser(email, password).then((res) => {
         //for controls the message errors
         if (typeof res.data == "string") setError(res.data);
-        if (typeof res.data == "object")
+        if (typeof res.data == "object") {
           dispatch({ type: ADD_NEW_USER, payload: res.data });
+          setSuccess("connection reussir");
+        }
       });
     },
     [email, password]
@@ -45,22 +47,31 @@ const SigbIn = () => {
     [email, password]
   );
 
-  const hanbleError = useCallback((e) => {
-    setError(false)
-  },[error])
-  
+  const hanbleError = useCallback(() => {
+    setError(false);
+  }, []);
+
+  const hanbleSuccess = useCallback(() => {
+    setSuccess(false);
+  });
+
   return (
     <>
-    {error != false && <Alert message={error} onHanbleClik={hanbleError} />}
-    <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
-      <label htmlFor="emaill">email</label>
-      <input type="email" name="email" id="emaill" />
+      {error && (
+        <Alert message={error} onHanbleClik={hanbleError} status="error" />
+      )}
+      {success && (
+        <Alert message={success} onHanbleClik={hanbleSuccess} status="success" />
+      )}
+      <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
+        <label htmlFor="emaill">email</label>
+        <input type="email" name="email" id="emaill" />
 
-      <label htmlFor="passworrd">password</label>
-      <input type="password" name="password" id="passworrd" />
+        <label htmlFor="passworrd">password</label>
+        <input type="password" name="password" id="passworrd" />
 
-      <button type="submit">envoyer</button>
-    </form>
+        <button type="submit">envoyer</button>
+      </form>
     </>
   );
 };

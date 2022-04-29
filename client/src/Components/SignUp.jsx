@@ -7,6 +7,8 @@ const SignUp = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const hanbleSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -17,11 +19,11 @@ const SignUp = () => {
           password,
         })
         .then((response) => {
-          if(response.data.errors) {
-            setError(JSON.stringify(response.data.errors))
+          if (response.data.errors) {
+            setError(JSON.stringify(response.data.errors));
             return;
-          }else {
-            console.log(response.data)
+          } else {
+            setSuccess('creation de compte avec succes')
           }
         });
     },
@@ -53,24 +55,38 @@ const SignUp = () => {
     [pseudo, email, password]
   );
 
-  const hanbleClik = useCallback((e) => {
-    setError(false)
-  })
+  const hanbleError = useCallback(() => {
+    setError(false);
+  });
+
+
+  const hanbleSuccess = useCallback(() => {
+    setSuccess(false);
+  });
   return (
     <>
-    {error !== false && <Alert message={error} onHanbleClik={hanbleClik} />}
-    <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
-      <label htmlFor="pseudo">pseudo</label>
-      <input type="text" name="pseudo" id="pseudo" />
+      {error && (
+        <Alert message={error} onHanbleClik={hanbleError} status="error" />
+      )}
+      {success && (
+        <Alert
+          message={success}
+          onHanbleClik={hanbleSuccess}
+          status="success"
+        />
+      )}
+      <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
+        <label htmlFor="pseudo">pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" />
 
-      <label htmlFor="email">email</label>
-      <input type="email" name="email" id="email" />
+        <label htmlFor="email">email</label>
+        <input type="email" name="email" id="email" />
 
-      <label htmlFor="password">password</label>
-      <input type="password" name="password" id="password" />
+        <label htmlFor="password">password</label>
+        <input type="password" name="password" id="password" />
 
-      <button type="submit">envoyer</button>
-    </form>
+        <button type="submit">envoyer</button>
+      </form>
     </>
   );
 };

@@ -12,7 +12,6 @@ const signUp = async (request, response) => {
       }});
       return;
     }else {
-      console.log(data);
       UserModel.create(data,(error,docs) => {
         if (error) {
           const errors = utilsSign.signUpErrors(error);
