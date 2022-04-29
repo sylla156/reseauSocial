@@ -6,15 +6,25 @@ const signUp = async (request, response) => {
   const data = request.body;
 
   try {
-    const user = UserModel.create(data, (error, docs) => {
-      if (error) {
-        const errors = utilsSign.signUpErrors(error);
-        return response.send(errors);
-      } else response.send(data);
-    });
+    if (data.email === undefined || data.pseudo ===undefined || data.password == undefined) {
+      response.status(200).send({'errors':{
+        'message': 'All fiels must be completed'
+      }});
+      return;
+    }else {
+      console.log(data);
+      UserModel.create(data,(error,docs) => {
+        if (error) {
+          const errors = utilsSign.signUpErrors(error);
+          response.send({'errors':errors});
+        }else {
+          response.send(docs);
+        }
+      });
+    }
+   
   } catch (err) {
-    const errors = utilsSign.signUpErrors(error);
-    response.status(400).send("ll");
+   response.send({'errors':err});
   }
 };
 
@@ -29,15 +39,20 @@ const signIn = async (request, response) => {
   const data = request.body;
 
   try {
+    if (data.email === undefined || data.password === undefined) {
+      response.status(200).send('email or password not foudn');
+      return ;
+    }
     const datas = await UserModel.login(data.email, data.password);
     if (datas.errors) response.send(errors);
-    const id = datas._id;
-    const token = createToken(id);
-    const maxAge = 3 * 24 * 60 * 60 * 1000;
-    response.cookie("jwt", token, { httpOnly: true, maxAge });
+    // const id = datas._id;
+    // const token = createToken(id);
+    // const maxAge = 3 * 24 * 60 * 60 * 1000;
+    // response.cookie("jwt", token, { httpOnly: true, maxAge });
     response.send(datas);
   } catch (error) {
     const errors = utilsSign.signInErrors(error);
+    console.log(error)
     if (error) response.status(400).send(errors);
   }
 };

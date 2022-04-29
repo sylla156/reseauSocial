@@ -1,26 +1,28 @@
 import React, { useCallback, useState } from "react";
 import axios from "axios";
+import Alert from "./utils/Alert";
 
 const SignUp = () => {
   const [pseudo, setPseudo] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [error, setError] = useState(false);
   const hanbleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}api/user/register`, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}/api/user/register`, {
           pseudo,
           email,
           password,
         })
         .then((response) => {
-           if (response.data.errors) {
-               console.log(response.data.errors);
-           }else {
-               console.log('creation de compte')
-           }
+          if(response.data.errors) {
+            setError(JSON.stringify(response.data.errors))
+            return;
+          }else {
+            console.log(response.data)
+          }
         });
     },
     [pseudo, email, password]
@@ -50,7 +52,13 @@ const SignUp = () => {
     },
     [pseudo, email, password]
   );
+
+  const hanbleClik = useCallback((e) => {
+    setError(false)
+  })
   return (
+    <>
+    {error !== false && <Alert message={error} onHanbleClik={hanbleClik} />}
     <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
       <label htmlFor="pseudo">pseudo</label>
       <input type="text" name="pseudo" id="pseudo" />
@@ -63,6 +71,7 @@ const SignUp = () => {
 
       <button type="submit">envoyer</button>
     </form>
+    </>
   );
 };
 
