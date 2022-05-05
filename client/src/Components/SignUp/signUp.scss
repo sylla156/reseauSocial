@@ -1,0 +1,59 @@
+@use '../../scss/palettes';
+@use '../../scss/breakpoints.scss'as *;
+
+.signUp {
+    background-color: palettes.$fourth;
+    height: 100%;
+    width: 100%;
+
+
+    &__title {
+        text-indent: 20px;
+        height: max-content;
+        margin-top: 10%;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-style: italic;
+        font-size: 2em;
+
+        @include mobile {
+            margin-top: 10px;
+        }
+    }
+
+    form {
+        height: 70%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        label {
+            font-style: oblique;
+            text-transform: capitalize;
+            margin: 10px 0 4px 0;
+
+        }
+
+        button {
+            align-self: flex-end;
+            color: palettes.$thirty;
+            background-color: palettes.$primary;
+            padding: 5px 10px;
+            margin: 30px 10px 0 0;
+            border: none;
+            outline: none;
+        }
+
+
+        input {
+            border: none;
+            outline: none;
+            border-radius: 3%;
+            height: 10%;
+            width: 80%;
+        }
+
+    }
+}

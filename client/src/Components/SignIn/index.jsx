@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewUser, ADD_NEW_USER } from "../Actions/userAction";
-import Alert from "./utils/Alert";
+import { addNewUser, ADD_NEW_USER } from "../../Actions/userAction";
+import Alert from "../utils/Alert";
+import "./signIn.scss";
 
 const SigbIn = () => {
   const [email, setEmail] = useState();
@@ -56,13 +57,18 @@ const SigbIn = () => {
   });
 
   return (
-    <>
+    <div className="signIn">
       {error && (
         <Alert message={error} onHanbleClik={hanbleError} status="error" />
       )}
       {success && (
-        <Alert message={success} onHanbleClik={hanbleSuccess} status="success" />
+        <Alert
+          message={success}
+          onHanbleClik={hanbleSuccess}
+          status="success"
+        />
       )}
+      <h2 className="signIn__title">SignIn</h2>
       <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
         <label htmlFor="emaill">email</label>
         <input type="email" name="email" id="emaill" />
@@ -72,7 +78,7 @@ const SigbIn = () => {
 
         <button type="submit">envoyer</button>
       </form>
-    </>
+    </div>
   );
 };
 

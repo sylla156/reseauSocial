@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { Provider } from "react-redux";
 import store from "./store.js";
+import "./App.scss";
 function App() {
   return (
     <BrowserRouter>

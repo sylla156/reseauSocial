@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import axios from "axios";
-import Alert from "./utils/Alert";
+import Alert from "../utils/Alert";
+import "./signUp.scss";
 
 const SignUp = () => {
   const [pseudo, setPseudo] = useState();
@@ -23,7 +24,7 @@ const SignUp = () => {
             setError(JSON.stringify(response.data.errors));
             return;
           } else {
-            setSuccess('creation de compte avec succes')
+            setSuccess("creation de compte avec succes");
           }
         });
     },
@@ -59,12 +60,11 @@ const SignUp = () => {
     setError(false);
   });
 
-
   const hanbleSuccess = useCallback(() => {
     setSuccess(false);
   });
   return (
-    <>
+    <div className="signUp">
       {error && (
         <Alert message={error} onHanbleClik={hanbleError} status="error" />
       )}
@@ -75,6 +75,7 @@ const SignUp = () => {
           status="success"
         />
       )}
+      <h2 className="signUp__title">signUp</h2>
       <form method="post" onSubmit={hanbleSubmit} onChange={hanbleChange}>
         <label htmlFor="pseudo">pseudo</label>
         <input type="text" name="pseudo" id="pseudo" />
@@ -87,7 +88,7 @@ const SignUp = () => {
 
         <button type="submit">envoyer</button>
       </form>
-    </>
+    </div>
   );
 };
 

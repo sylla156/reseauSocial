@@ -1,0 +1,33 @@
+@use '../../scss//palettes.scss';
+@use '../../scss/breakpoints.scss'as *;
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: palettes.$fourth;
+    height: 10vh;
+
+    &__title {
+        color: palettes.$secondary;
+        margin: 10px;
+        text-transform: capitalize;
+        width: 20%;
+    }
+
+    &__nav {
+        width: 80%;
+        display: flex;
+        justify-content: end;
+        align-content: center;
+
+        a {
+            color: palettes.$primary !important;
+            text-decoration: none;
+            margin: 0 30px;
+        }
+
+    }
+
+}

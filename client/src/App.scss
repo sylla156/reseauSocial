@@ -1,0 +1,20 @@
+@use './scss/palettes.scss';
+@use './scss/fonts.scss';
+
+body,
+*,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    background-color: palettes.$thirty;
+    color: palettes.$primary;
+    font-family: fonts.$primary;
+
+    a {
+        color: blue;
+    }
+}

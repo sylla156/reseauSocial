@@ -1,14 +1,15 @@
 import React from "react";
-import SignIn from "../Components/SignIn";
-import SignUp from "../Components/SignUp";
+import SignUp from "../../Components/SignUp";
+import SignIn from "../../Components/SignIn";
+import "./login.scss";
 
 const Login = () => {
   return (
     <div className="login">
-      <div className="left">
+      <div className="login__left">
         <SignUp />
       </div>
-      <div className="right">
+      <div className="login__right">
         <SignIn />
       </div>
     </div>

@@ -1,0 +1,5 @@
+@mixin mobile {
+    @media all and (orientation: portrait) and (min-width: 0px) and (max-width:425px) {
+        @content;
+    }
+}

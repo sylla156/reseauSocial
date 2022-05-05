@@ -1,0 +1,31 @@
+@use '../../scss/breakpoints.scss'as *;
+
+.login {
+    height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+
+    &>* {
+        height: 60%;
+        width: 45%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // here it's the loging responsible
+
+    @include mobile {
+        flex-direction: column-reverse;
+        overflow: hidden;
+
+        &>* {
+            height: 45%;
+            width: 80%;
+        }
+    }
+}
