@@ -2,7 +2,7 @@
 @use '../../scss/breakpoints.scss'as *;
 
 .navbar {
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,11 +34,11 @@
 
 
 .profil {
-    width: 80%;
+    min-width: 25%;
     
     &__icone {
         display: flex;
-        justify-content: end;
+        justify-content: space-around;
         align-items: center;
         margin: 10px 30px 10px 10px;  
         img{
@@ -47,7 +47,7 @@
             display: block;
         }
         p{
-            width: 15%;
+            width: 100%;
             text-transform: uppercase;
         }
 
@@ -83,6 +83,14 @@
                     padding: 3px 10px;
                 }
             }
+        }
+    }
+
+    @include mobile {
+        width: 60%;
+
+        &__details {
+            width: 80vw;
         }
     }
 }
