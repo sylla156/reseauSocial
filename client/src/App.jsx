@@ -4,16 +4,14 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { Provider } from "react-redux";
 import store from "./store.js";
+import Router from './Router/Router' ;
 import "./App.scss";
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
         <Navbar />
-        <Routes>
-          <Route path="/" index element={<Home />} />
-          <Route path="/log" element={<Login />} />
-        </Routes>
+        <Router/>
       </Provider>
     </BrowserRouter>
   );

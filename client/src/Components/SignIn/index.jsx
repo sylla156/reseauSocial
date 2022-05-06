@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewUser, ADD_NEW_USER } from "../../Actions/userAction";
+import Cookies from 'js-cookie'
 import Alert from "../utils/Alert";
 import "./signIn.scss";
 
@@ -20,6 +21,7 @@ const SigbIn = () => {
         if (typeof res.data == "string") setError(res.data);
         if (typeof res.data == "object") {
           dispatch({ type: ADD_NEW_USER, payload: res.data });
+          Cookies.set('id',res.data._id,{ expires: 1 })
           setSuccess("connection reussir");
         }
       });
