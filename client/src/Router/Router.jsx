@@ -9,6 +9,7 @@ import {
   VERIFY_IF_USER_CONNECT,
 } from "../Actions/userAction";
 import NoFound from "../Components/NoFound/NoFound";
+import Logout from "../Components/Logout";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const Router = () => {
     route = (
       <Routes>
         <Route path="/" index element={<Home />}/>
-        
+        <Route path="/logout" element={<Logout/>} />
 
 
        {/* REDIRECT */}

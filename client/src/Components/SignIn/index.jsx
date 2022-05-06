@@ -15,7 +15,6 @@ const SigbIn = () => {
   const hanbleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      addNewUser(email, password).then((res) => console.log(res));
       addNewUser(email, password).then((res) => {
         //for controls the message errors
         if (typeof res.data == "string") setError(res.data);
