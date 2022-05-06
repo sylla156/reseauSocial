@@ -1,0 +1,116 @@
+@use '../../scss/palettes.scss';
+
+.account {
+    width: 80vw;
+    height: 80vh;
+    margin: 5vh auto;
+    overflow: hidden;
+    display: grid;
+    grid-template: 1fr 1fr / 1.5fr 1fr;
+    grid-template-areas: "image field"
+        "action action";
+    align-items: center;
+    background-color: palettes.$primary;
+    color: palettes.$thirty;
+
+    &__image {
+        grid-area: image;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+
+        img {
+            width: 40%;
+            height: auto;
+            margin: 0 5%;
+            border-radius: 50%;
+        }
+
+        form {
+            width: 50%;
+
+            input {
+                margin: 1em;
+            }
+
+            input:first-child {
+                text-transform: capitalize;
+                font-weight: bolder;
+                font-style: italic;
+                color: palettes.$fourth;
+                font-size: 0.5em;
+            }
+
+            input:last-child {
+                width: 40%;
+                outline: none;
+                background-color: palettes.$fourth;
+                height: 2em;
+                border: none;
+                font-size: 1.1em;
+                font-weight: bolder;
+                font-style: italic;
+
+            }
+        }
+    }
+
+    &__field {
+        grid-area: field;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form {
+            width: min-content;
+
+            input {
+                height: 2em;
+                border: none;
+                outline: none;
+            }
+
+            label {
+                text-transform: uppercase;
+                font-weight: bold;
+                font-style: oblique;
+                color: palettes.$fourth;
+                margin: 0.5em;
+            }
+
+            input:last-child {
+                width: 40%;
+                outline: none;
+                background-color: palettes.$fourth;
+                height: 2em;
+                border: none;
+                font-size: 1.1em;
+                font-weight: bolder;
+                font-style: italic;
+
+            }
+        }
+    }
+
+
+    &__action {
+        grid-area: action;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+
+        div {
+            height: 20vh;
+            width: 25%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            background-color: palettes.$fourth;
+            color:palettes.$primary
+        }
+    }
+}

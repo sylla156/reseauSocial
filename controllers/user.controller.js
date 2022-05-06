@@ -32,6 +32,8 @@ const updateUser = async (request, response) => {
         $set: {
           ...data,
         },
+      },{
+        new:true
       },
       (error, docs) => {
         if (error) return response.status(500).json(error);

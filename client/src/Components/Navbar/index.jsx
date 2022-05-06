@@ -29,7 +29,7 @@ export default Navbar;
 const Profil = ({ name, image }) => {
   const detailsRef = useRef();
   const [show, setShow] = useState(false);
-  const onHanbleNavbar = useCallback((e) => {
+  const onHanbleNavbar = useCallback(() => {
     setShow((show) => !show);
   });
 

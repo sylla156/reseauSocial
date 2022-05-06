@@ -10,6 +10,7 @@ import {
 } from "../Actions/userAction";
 import NoFound from "../Components/NoFound/NoFound";
 import Logout from "../Components/Logout";
+import Account from "../Components/Account";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Router = () => {
       <Routes>
         <Route path="/" index element={<Home />}/>
         <Route path="/logout" element={<Logout/>} />
-
+        <Route path="/account" element={<Account/>} />
 
        {/* REDIRECT */}
         <Route path="/log" element={<Home />}/>
