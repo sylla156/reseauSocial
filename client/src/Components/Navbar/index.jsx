@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./navbar.scss";
-
+import image from "../../uploads/profil/defaut.jpg";
 const Navbar = () => {
-  const state = useSelector((state) => state._id);
+  const state = useSelector((state) => state);
   let link;
-  if (state == undefined) {
+  if (state._id === undefined) {
     link = (
       <>
         <Link to="/">Home</Link>
@@ -14,11 +14,7 @@ const Navbar = () => {
       </>
     );
   } else {
-    link = (
-      <>
-        <Link to="/logout">logout</Link>
-      </>
-    );
+    link = <Profil name={state.pseudo} image={image} />;
   }
   return (
     <div className="navbar">
@@ -30,14 +26,24 @@ const Navbar = () => {
 
 export default Navbar;
 
-const profil = ({name,img}) => {
+const Profil = ({ name, image }) => {
+  const detailsRef = useRef();
+  const [show, setShow] = useState(false);
+  const onHanbleNavbar = useCallback((e) => {
+    setShow((show) => !show);
+  });
+
+  useEffect(() => {
+    let nameClass = show ? "profil__details showDetails" : "profil__details";
+    detailsRef.current.className = nameClass;
+  });
   return (
     <div className="profil">
-      <div className="profil__icone">
+      <div className="profil__icone" onClick={onHanbleNavbar}>
         <p>{name}</p>
-        <img src={img} alt="photo de profile" />
+        <img src={image} alt="photo de profile" />
       </div>
-      <div className="profil__details">
+      <div className="profil__details" ref={detailsRef}>
         <p>
           <Link to={"/account"}>account</Link>
         </p>

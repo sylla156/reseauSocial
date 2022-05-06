@@ -8,7 +8,7 @@ const multer = require("multer");
 const { exists } = require("../models/post.models.js");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname + "../../client/public/uploads/profil");
+    cb(null, __dirname + "../../client/src/uploads/profil");
   },
   filename: (req, file, cb) => {
     if (file !== null) {

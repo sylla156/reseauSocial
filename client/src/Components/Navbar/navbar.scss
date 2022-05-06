@@ -31,3 +31,64 @@
     }
 
 }
+
+
+.profil {
+    width: 80%;
+    
+    &__icone {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin: 10px 30px 10px 10px;  
+        img{
+            width: 30px;
+            border-radius: 50%;
+            display: block;
+        }
+        p{
+            width: 15%;
+            text-transform: uppercase;
+        }
+
+    }
+
+    &__details {
+        pointer-events: none;
+        opacity: 0;
+        position: absolute;
+        top: 10vh;
+        right: 0;
+        height: 20vh;
+        width: 20%;
+        background-color: palettes.$fourth;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+
+        p{
+            font-weight: bolder;
+            text-transform: capitalize;
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:last-child{
+
+                a {
+                    border: 1px solid palettes.$error;
+                    background-color: palettes.$bg-error;
+                    padding: 3px 10px;
+                }
+            }
+        }
+    }
+}
+
+
+.showDetails {
+    opacity: 1;
+    pointer-events: visible;
+}
