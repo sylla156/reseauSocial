@@ -16,11 +16,11 @@ const Account = () => {
         <form>
           <label htmlFor="pseudo">pseudo</label>
           <input type="text" name="pseudo" id="pseudo" />
-
+<br />
           <label htmlFor="email">email</label>
           <input type="email" name="email" id="email" />
-
-          <label htmlFor="bio">bio</label>
+<br />
+          <label htmlFor="bio">bio</label><br />
           <textarea name="bio" id="bio" cols="20" rows="5" defaultValue={'salut les gens'}>
             
           </textarea>

@@ -1,10 +1,10 @@
 @use '../../scss/palettes.scss';
+@use '../../scss/breakpoints.scss'as *;
 
 .account {
     width: 80vw;
     height: 80vh;
     margin: 5vh auto;
-    overflow: hidden;
     display: grid;
     grid-template: 1fr 1fr / 1.5fr 1fr;
     grid-template-areas: "image field"
@@ -51,6 +51,11 @@
                 font-weight: bolder;
                 font-style: italic;
 
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
             }
         }
     }
@@ -62,13 +67,15 @@
         align-items: center;
 
         form {
-            width: min-content;
+            width: 80%;
 
             input {
                 height: 2em;
+                width: 100%;
                 border: none;
                 outline: none;
             }
+
 
             label {
                 text-transform: uppercase;
@@ -79,7 +86,7 @@
             }
 
             input:last-child {
-                width: 40%;
+                // width: 40%;
                 outline: none;
                 background-color: palettes.$fourth;
                 height: 2em;
@@ -88,6 +95,16 @@
                 font-weight: bolder;
                 font-style: italic;
 
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+
+            textarea {
+                outline: none;
+                border: none;
+                width: 100%;
             }
         }
     }
@@ -110,7 +127,18 @@
             align-items: center;
             flex-direction: column;
             background-color: palettes.$fourth;
-            color:palettes.$primary
+            color: palettes.$primary
         }
+    }
+
+    @include mobile() {
+        grid-template: 1fr 1fr 1fr / 1fr;
+        grid-template-areas: "image image"
+            "field field"
+            "action action";
+
+        width: 100vw;
+        height: 90vh;
+        margin: 0;
     }
 }
