@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
           file.mimetype == "image/png" ||
           file.mimetype == "image/jpeg" 
         ){
-          console.log(file.mimetype);
           cb(null, Date.now() + file.originalname);
         }else {
          throw new Error('le fichier ne correspond pas')

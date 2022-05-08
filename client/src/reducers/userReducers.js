@@ -1,4 +1,9 @@
-import { ADD_NEW_PICTURE, ADD_NEW_USER, VERIFY_IF_USER_CONNECT } from "../Actions/userAction";
+import {
+  ADD_NEW_PICTURE,
+  ADD_NEW_USER,
+  UPDATE_USER_INFO,
+  VERIFY_IF_USER_CONNECT,
+} from "../Actions/userAction";
 
 const initialState = {};
 
@@ -13,7 +18,11 @@ export const userReducer = (state = initialState, action) => {
       break;
 
     case ADD_NEW_PICTURE:
-      return {...action.payload};
+      return { ...action.payload };
+      break;
+
+    case UPDATE_USER_INFO:
+      return { ...action.payload };
       break;
 
     default:

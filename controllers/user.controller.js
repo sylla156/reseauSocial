@@ -1,5 +1,6 @@
 const UserModel = require("../models/user.model.js");
 const ObjectID = require("mongoose").Types.ObjectId;
+const utilsSign = require("../utils/errors.utils.js");
 
 const getAllUsers = async (request, response) => {
   try {
@@ -24,26 +25,42 @@ const updateUser = async (request, response) => {
   const id = request.params.id;
   const data = request.body;
   if (!ObjectID.isValid(id)) return response.status(400).send("ID unknow");
-
-  try {
-    UserModel.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          ...data,
-        },
-      },{
-        new:true
+  if (
+    data.email === undefined ||
+    data.pseudo === undefined ||
+    data.bio == undefined
+  ) {
+    response.status(200).send({
+      errors: {
+        message: "All fiels must be completed",
       },
-      (error, docs) => {
-        if (error) return response.status(500).json(error);
-        else response.send(docs);
-      }
-    );
-  } catch {
-    response
-      .status(400)
-      .send("error http://localhost:5000/api/user/6251b337c1b38065438176cb");
+    });
+    return;
+  } else {
+    try {
+      UserModel.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            ...data,
+          },
+        },
+        {
+          new: true,
+          upsert:true
+        },
+        (error, docs) => {
+          if (error) {
+            const errors = utilsSign.signUpErrors(error);
+            response.send({ errors: errors });
+          } else {
+            response.send(docs);
+          }
+        }
+      );
+    } catch (error) {
+      response.send({'errors':error});
+    }
   }
 };
 

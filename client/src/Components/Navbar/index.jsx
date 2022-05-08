@@ -14,7 +14,13 @@ const Navbar = () => {
       </>
     );
   } else {
-    link = <Profil name={state.pseudo} image={image} />;
+    link = (
+      <Profil
+        name={state.pseudo}
+        image={state.picture ? undefined : image}
+        picture={state.picture ? state.picture : undefined}
+      />
+    );
   }
   return (
     <div className="navbar">
@@ -26,7 +32,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-const Profil = ({ name, image }) => {
+const Profil = ({ name, image, picture }) => {
   const detailsRef = useRef();
   const [show, setShow] = useState(false);
   const onHanbleNavbar = useCallback(() => {
@@ -41,7 +47,10 @@ const Profil = ({ name, image }) => {
     <div className="profil">
       <div className="profil__icone" onClick={onHanbleNavbar}>
         <p>{name}</p>
-        <img src={image} alt="photo de profile" />
+        <img
+          src={image ? image : `uploads/profil/${picture}`}
+          alt="photo de profile"
+        />
       </div>
       <div className="profil__details" ref={detailsRef}>
         <p>
