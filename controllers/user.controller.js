@@ -26,9 +26,9 @@ const updateUser = async (request, response) => {
   const data = request.body;
   if (!ObjectID.isValid(id)) return response.status(400).send("ID unknow");
   if (
-    data.email === undefined ||
-    data.pseudo === undefined ||
-    data.bio == undefined
+    data.email == '' ||
+    data.pseudo == '' ||
+    data.bio == ''
   ) {
     response.status(200).send({
       errors: {
