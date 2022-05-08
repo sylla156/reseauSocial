@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./navbar.scss";
-import image from "../../uploads/profil/defaut.jpg";
+import image from "../../defaut.jpg";
 const Navbar = () => {
   const state = useSelector((state) => state);
   let link;

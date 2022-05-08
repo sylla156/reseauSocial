@@ -10,9 +10,10 @@ module.exports.uploadProfil = async (req, res) => {
     const docs = await UserModel.findByIdAndUpdate(
       req.body.userId,
       { $set : {picture: req.file.filename}},
-      { new: true, upsert: true, setDefaultsOnInsert: true});
+      { new: true});
       res.send(docs)
-  } catch (err) {
-    return res.status(500).send({ message: err });
+
+  } catch (error) {
+    return res.status(500).send(error);
   }
 };

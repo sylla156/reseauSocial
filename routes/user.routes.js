@@ -6,9 +6,10 @@ const uploadController = require('../controllers/upload.controller.js');
 
 const multer = require("multer");
 const { exists } = require("../models/post.models.js");
+const { response } = require("express");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname + "../../client/src/uploads/profil");
+    cb(null, __dirname + "../../client/public/uploads/profil");
   },
   filename: (req, file, cb) => {
     if (file !== null) {
@@ -18,19 +19,20 @@ const storage = multer.diskStorage({
           file.mimetype == "image/png" ||
           file.mimetype == "image/jpeg" 
         ){
+          console.log(file.mimetype);
           cb(null, Date.now() + file.originalname);
         }else {
-          throw Error('votre fichier nest pas trop')
+         throw new Error('le fichier ne correspond pas')
         }
           
 
       } catch (err) {
-        console.log(err);
+        
       }
     }
   },
   onError : function(err, next) {
-    console.log('error', err);
+   response.send(err)
     next(err);
   }
 });
