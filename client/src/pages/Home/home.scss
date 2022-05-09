@@ -1,5 +1,5 @@
 @use '../../scss/palettes.scss';
-
+@use '../../scss/breakpoints.scss' as *;
 .home {
     display: grid;
     grid-template: 1fr / 1fr 2.5fr 1fr;
@@ -38,16 +38,21 @@
 
 
         }
+
+        @include mobile {
+            display:none;
+        }
+
+       
     }
 
     &__posts {
         grid-area: posts;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         flex-direction: column;
-        position: relative;
         gap: 5vh;
 
         &--createPost {
@@ -143,6 +148,21 @@
 
         }
 
+        @include mobile {
+            width: 90vw;
+            gap: 2vh;
+
+            &--createPost {
+                width: 100%;
+                height: auto;
+            }
+
+            &--content{
+                width: 100%;
+            }
+        }
+        
+
     }
 
     &__other {
@@ -182,6 +202,12 @@
                 }
             }
         }
+
+        @include mobile {
+            display:none;
+        }
+
+       
     }
 }
 

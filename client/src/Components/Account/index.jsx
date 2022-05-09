@@ -9,6 +9,7 @@ import {
 } from "../../Actions/userAction";
 import Alert from "../utils/Alert";
 import image from "../../defaut.jpg";
+import { Link } from "react-router-dom";
 
 const Account = () => {
   const state = useSelector((state) => state);
@@ -23,31 +24,55 @@ const Account = () => {
     setSuccess(false);
   });
   return (
-    <div className="account">
-      {error && (
-        <Alert message={error} onHanbleClik={hanbleError} status="error" />
-      )}
-      {success && (
-        <Alert
-          message={success}
-          onHanbleClik={hanbleSuccess}
-          status="success"
-        />
-      )}
-      <UploadImage />
-      <UploadField setError={setError} setSuccess={setSuccess} />
-      <div className="account__action">
-        <div>
-          <h3>followers</h3>
-          <p>{state.followers}</p>
+    <div className="main">
+    <div className="nav">
+        <div className="home__nav--home">
+          <img src="assets/img/home.webp" alt="home logo" />
+          <span>
+            <Link to="/">home</Link>
+          </span>
         </div>
-        <div>
-          <h3>following</h3>
-          <p>{state.following}</p>
+
+        <div className="home__nav--trending">
+          <img src="assets/img/trending.webp" alt="trending logo" />
+          <span>
+            <Link to="/trending">trending</Link>
+          </span>
         </div>
-        <div>
-          <h3>likers</h3>
-          <p>{state.likes}</p>
+
+        <div className="home__nav--profil">
+          <img src="assets/img/profile.png" alt="profile logo" />
+          <span>
+            <Link to={"/account"}>account</Link>
+          </span>
+        </div>
+      </div>
+      <div className="account">
+        {error && (
+          <Alert message={error} onHanbleClik={hanbleError} status="error" />
+        )}
+        {success && (
+          <Alert
+            message={success}
+            onHanbleClik={hanbleSuccess}
+            status="success"
+          />
+        )}
+        <UploadImage />
+        <UploadField setError={setError} setSuccess={setSuccess} />
+        <div className="account__action">
+          <div>
+            <h3>followers</h3>
+            <p>{state.followers}</p>
+          </div>
+          <div>
+            <h3>following</h3>
+            <p>{state.following}</p>
+          </div>
+          <div>
+            <h3>likers</h3>
+            <p>{state.likes}</p>
+          </div>
         </div>
       </div>
     </div>

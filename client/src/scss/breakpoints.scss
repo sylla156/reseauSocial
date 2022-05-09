@@ -3,3 +3,8 @@
         @content;
     }
 }
+@mixin tab {
+    @media all and (orientation: portrait) and (min-width: 426px) and (max-width:900px) {
+        @content;
+    }
+}
