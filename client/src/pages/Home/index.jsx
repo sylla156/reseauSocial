@@ -2,6 +2,8 @@ import React, { useCallback, useState } from "react";
 import "./home.scss";
 import { useSelector } from "react-redux";
 import { format } from "date-format-parse";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   const [state, setState] = useState(useSelector((state) => state));
   const [heart, setHeart] = useState(true);
@@ -18,24 +20,32 @@ const Home = () => {
       <div className="home__nav">
         <div className="home__nav--home">
           <img src="assets/img/home.webp" alt="home logo" />
-          <span>home</span>
+          <span>
+            <Link to="/">home</Link>
+          </span>
         </div>
 
         <div className="home__nav--trending">
           <img src="assets/img/trending.webp" alt="trending logo" />
-          <span>trending</span>
+          <span>
+            <Link to="/trending">trending</Link>
+          </span>
         </div>
 
         <div className="home__nav--profil">
           <img src="assets/img/profile.png" alt="profile logo" />
-          <span>profil</span>
+          <span>
+            <Link to={"/account"}>account</Link>
+          </span>
         </div>
       </div>
 
       <div className="home__posts">
         <div className="home__posts--createPost">
           <div className="profile">
-            <img src={`uploads/profil/${state.picture}`} alt="user img" />
+            <Link to={"/account"}>
+              <img src={`uploads/profil/${state.picture}`} alt="user img" />
+            </Link>
             <div>
               <p>commencer un posts</p>
             </div>
@@ -58,10 +68,12 @@ const Home = () => {
 
         <div className="home__posts--content">
           <div className="profil">
-            <img
-              src={`uploads/profil/${state.picture}`}
-              alt="post creator img"
-            />
+            <Link to={"/account"}>
+              <img
+                src={`uploads/profil/${state.picture}`}
+                alt="post creator img"
+              />
+            </Link>
             <p>{format(state.createdAt, "DD-MMM-YYYY")}</p>
           </div>
           <div className="post">
@@ -86,55 +98,81 @@ const Home = () => {
       </div>
 
       <div className="home__other">
-        <div className="home__other_trending">
-          <div className="title">
-            <h3>trending</h3>
+        <Link to={"/trending"}>
+          <div className="home__other_trending">
+            <div className="title">
+              <h3>trending</h3>
+            </div>
+            <div className="content">
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+            </div>
           </div>
-          <div className="content">
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
+        </Link>
+        <Link to={"/friends"}>
+          <div className="home__other__suggestion">
+            <div className="title">
+              <h3>suggestion</h3>
             </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-          
-          </div>
-        </div>
-        <div className="home__other__suggestion">
-          <div className="title">
-            <h3>suggestion</h3>
-          </div>
 
-          <div className="content">
-          <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
+            <div className="content">
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
+              <div>
+                <img
+                  src={`uploads/profil/${state.picture}`}
+                  alt="img du profil"
+                />{" "}
+                <span>{state.pseudo}</span>
+              </div>
             </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-            <div>
-              <img src={`uploads/profil/${state.picture}`} alt="image du profil" />{" "}
-              <span>{state.pseudo}</span>
-            </div>
-            
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
